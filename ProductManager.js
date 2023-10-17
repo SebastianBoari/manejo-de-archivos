@@ -96,9 +96,11 @@ class ProductManager {
     updateProduct = async (pid, field, data) => {
         try {
             if (!pid || !field || !data) throw new Error('Missed required arguments')
+
             if (field === 'id') throw new Error('Cannot modified field id')
 
             const products = await this.getProducts()
+
             const productIndex = products.findIndex(item => item.id === pid)
 
             if (productIndex === -1) throw new Error('Product not found')
